@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="src/css/gjrCalendar.css">
+</head>
+<body>
+  <div class="gjrCalendar">
+    <!-- 
+    <h3>Enero 2021</h3>
+    <ol>
+      <li class="day-name">Lun</li>
+      <li class="day-name">Mar</li>
+      <li class="day-name">Mié</li>
+      <li class="day-name">Jue</li>
+      <li class="day-name">Vie</li>
+      <li class="day-name">Sáb</li>
+      <li class="day-name">Dom</li>
+
+      <li class="first-day">1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+      <li>7</li>
+      <li>8</li>
+      <li>9</li>
+      <li>10</li>
+      <li>11</li>
+      <li>12</li>
+      <li>13</li>
+      <li>14</li>
+      <li>15</li>
+      <li>16</li>
+      <li>17</li>
+      <li>18</li>
+      <li>19</li>
+      <li>20</li>
+      <li>21</li>
+      <li>22</li>
+      <li>23</li>
+      <li>24</li>
+      <li>25</li>
+      <li>26</li>
+      <li>27</li>
+      <li>28</li>
+      <li>29</li>
+      <li>30</li>
+      <li>31</li>
+    </ol> -->
+  </div>
+  <script>
+    const actualYear=2021;
+    const locate='es';
+    const weekdays=[...Array(7).keys()];
+    const months=[...Array(12).keys()];
+
+    const intlWeekDays= new Intl.DateTimeFormat(locate,{weekday:'long'});
+    const weekDaysNames=weekdays.map(weekDayIndex=>{
+      const date= new Date(2021,10,weekDayIndex+ 1);
+      const weekDayName=intlWeekDays.format(date);
+      return weekDayName;
+    });
+
+    const intl= new Intl.DateTimeFormat(locate,{month:'long'});
+    const calendar =months.map(monthKey=>{
+      const monthName = intl.format(new Date(actualYear,monthKey));
+      const nextMonthIndex= monthKey+1;
+      
+      const dayOfMonth = new Date(actualYear,nextMonthIndex,0).getDate();
+      const startOn= new Date(actualYear,monthKey,1).getDay();
+      return {
+        monthName,
+        dayOfMonth,
+        startOn
+      };
+    });
+    
+    
+    const html=calendar.map(({dayOfMonth,monthName})=>{
+      const days =[...Array(dayOfMonth).keys()];
+
+      const renderedWeekDays=weekDaysNames.map(weekDayName=>{
+        return "<li class='day-name'>"+ weekDayName  + "</li>"
+      }).join('');
+
+      const renderedDays=days.map(day=>{
+        return "<li>"+ (day + 1)  + "</li>"
+      }).join('');
+
+      return "<h1>"+ monthName + " " + actualYear +"</h3> <ol>" + renderedWeekDays + renderedDays + "</ol>";
+    }).join('');
+
+    document.querySelector('div').innerHTML=html;
+
+  </script>
+  
+</body>
+</html>
