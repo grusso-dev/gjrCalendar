@@ -13,8 +13,16 @@ li{
   /* border-radius: 1px */
 
 }
+li:hover{
+  background-color: #eee;
+  cursor: pointer;
+  /* font-size: 1.6em; */
+  /* text-align: center; */
+  padding: 0;
+}
 .first-day{
-  grid-column-start: 5;
+  /* grid-column-start: 5; */
+  grid-column-start: var(--first-day-start);
 }
 .day-name{
   background: #eee;
