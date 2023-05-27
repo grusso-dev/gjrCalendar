@@ -6,6 +6,9 @@ ol{
 }
 li{
   text-align: right;
+  /* background-color: grey; */
+  /* margin: 2px; */
+  /* border-radius: 1px */
 
 }
 .first-day{
@@ -17,6 +20,6 @@ li{
   text-align: center;
 }
 div.gjrCalendar{
-  width: 800px;
+  width: 300px;
   text-align: center;
 }
